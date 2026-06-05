@@ -1,0 +1,97 @@
+create table salesman(salesman_id int primary key, sname varchar(20), scity varchar(20), commission double);
+
+ create table Customer(customer_id int primary key, cust_name varchar(20), city varchar(20), grade varchar(20), salesman_id int , foreign key(salesman_id) references salesman(salesman_id));
+
+insert into salesman values(1,"anshul","pune", 1.2);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  insert into salesman values(2,"pratik","pune", 2.2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into salesman values(3,"madhav","nagar", 1.2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values(1,"pratik","nagar","A",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values(2,"Rohan","pune","B",1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values(3,"Pavan","pune","A",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer values(4,"Om","Kolhapur","C",3);
+Query OK, 1 row affected (0.01 sec)
+
+
+ select c.cust_name,c.city,c.grade,s.sname,s.scity from customer c join salesman s on c.salesman_id = s.salesman_id order by customer_id;
++-----------+----------+-------+--------+-------+
+| cust_name | city     | grade | sname  | scity |
++-----------+----------+-------+--------+-------+
+| pratik    | nagar    | A     | anshul | pune  |
+| Rohan     | pune     | B     | anshul | pune  |
+| Pavan     | pune     | A     | pratik | pune  |
+| Om        | Kolhapur | C     | madhav | nagar |
++-----------+----------+-------+--------+-------+
+
+
+ mysql> select * from salesman where commission >0.12;
++-------------+--------+-------+------------+
+| salesman_id | sname  | scity | commission |
++-------------+--------+-------+------------+
+|           1 | anshul | pune  |        1.2 |
+|           2 | pratik | pune  |        2.2 |
+|           3 | madhav | nagar |        1.2 |
++-------------+--------+-------+------------+
+
+select s.sname,c.cust_name,c.city,c.grade from salesman s join customer c on c.salesman_id = s.salesman_id;
++--------+-----------+----------+-------+
+| sname  | cust_name | city     | grade |
++--------+-----------+----------+-------+
+| anshul | pratik    | nagar    | A     |
+| anshul | Rohan     | pune     | B     |
+| pratik | Pavan     | pune     | A     |
+| madhav | Om        | Kolhapur | C     |
++--------+-----------+----------+-------+
+
+
+drop procedure if exits sp1;
+DELIMITER $$
+CREATE PROCEDURE sp1() 
+BEGIN
+select * from salesman;
+update salesman 
+set commission = commission +(commission*0.5)
+where city = "pune";
+end 
+$$
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
