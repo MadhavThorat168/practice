@@ -1,0 +1,85 @@
+-Try catch block with multiple catch Block
+
+EX:-
+
+public class TryWithMultiCatchBlock {
+    public static void main(String[] args) {
+        try{
+            int results=120/0;
+            System.out.println(results);
+            int arr[]={10,20,30,40,50};
+            System.out.println(arr[5]);
+        }
+        catch (ArithmeticException e)
+        {
+            System.out.println("Arithmetical exception Handled");
+
+        }
+        catch (ArrayIndexOutOfBoundsException ex)
+        {
+            System.out.println(ex);
+        }
+    }
+}
+
+---------------------------------------------------------------
+
+Finally block:-
+
+Finally block in java can be used to put "cleanup" code such as closing a file ,closing connection etc.
+-- In java finally Bolck executed at end of code, weather try executed or not.
+
+Syntax
+============
+
+try
+{
+ //stm;
+}
+catch
+{
+ //stam;
+}
+finally
+{
+ // stam;
+}
+
+Ex 1:-
+
+public class TryWithMultiCatchBlock {
+    public static void main(String[] args) {
+        try{
+            int results=120/0;
+            System.out.println(results);
+            
+        }
+        catch (ArithmeticException e)
+        {
+            System.out.println("Arithmetical exception Handled");
+
+        }
+        finally
+         {
+           System.out.println("The End");
+         }  
+          System.out.println("This is a last statement");  
+    }
+}
+
+------------------------------------------------------------------------
+
+OUTPUT:-
+
+Arithmetical exception Handled
+The End
+This is a last statement
+------------------------------------------------------------------------
+
+Throw Methods:-
+====================
+
+-- Throw -- along with the variables or object
+The java throw keywords is used to explicitly throw an exception.
+We can throw either cheaked or uncheaked exception in java by throw keyword.
+The throw keyword is mainly used to throw custom exception
